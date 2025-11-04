@@ -1,0 +1,152 @@
+
+/* === Theme variables === */
+:root{
+  --bg:#0f1115;
+  --panel:#151823;
+  --panel-2:#1b2030;
+  --text:#e5e7eb;
+  --muted:#9aa4b2;
+  --accent:#22c55e;
+  --border:#2a2f3a;
+  --danger:#ef4444;
+}
+
+/* === Base === */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1120px;margin:0 auto;padding:24px}
+.card{
+  background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.35);
+}
+
+/* === Header === */
+.site-header{
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:rgba(15,17,21,.8);backdrop-filter:blur(6px);z-index:50;
+}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+.logo{
+  display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;letter-spacing:.3px
+}
+.logo svg{width:28px;height:28px}
+.nav{display:flex;gap:12px;flex-wrap:wrap}
+.nav a{
+  padding:10px 14px;border:1px solid var(--border);border-radius:12px;background:transparent;
+  transition:.15s ease;
+}
+.nav a:hover,.nav a.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(34,197,94,.15) inset}
+
+/* === Titles === */
+.h1{font-size:32px;margin:0 0 6px 0}
+.subtitle{color:var(--muted);margin:0 0 18px 0}
+
+/* === Grids === */
+.grid{display:grid;gap:16px}
+.grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:960px){.grid.cols-4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){.grid.cols-4,.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+
+/* === Metrics === */
+.metric{display:flex;flex-direction:column;gap:4px}
+.metric .label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.metric .value{font-size:28px;font-weight:700}
+
+/* === Buttons & inputs === */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:12px;background:#0f121a;cursor:pointer;transition:.15s;color:#fff}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:linear-gradient(180deg,#1c4029,#15341f);border-color:#1d4d2c}
+.btn.danger{background:linear-gradient(180deg,#561717,#3f1010);border-color:#6e1c1c}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.input,select,textarea{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#0f121a;color:var(--text);
+  outline:none;transition:.12s
+}
+.input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,197,94,.15)}
+
+/* === Table === */
+.table{width:100%;border-collapse:separate;border-spacing:0}
+.table th,.table td{padding:12px 14px;border-bottom:1px solid var(--border)}
+.table th{color:var(--muted);font-weight:600;text-align:left}
+.table tr:hover td{background:rgba(255,255,255,.02)}
+.table .actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* === Footer === */
+.site-footer{border-top:1px solid var(--border);margin-top:24px}
+.muted{color:var(--muted)}
+
+/* === Crud nav === */
+.crud-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.crud-nav a{padding:8px 12px;border:1px solid var(--border);border-radius:999px}
+.crud-nav a.active{border-color:var(--accent)}
+
+/* === Chart layout === */
+.charts{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.charts .wide{grid-column:1/-1}
+@media (max-width:900px){.charts{grid-template-columns:1fr}}
+
+/* === Profiles === */
+.profile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.avatar{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--border);background:#0f121a;font-weight:700}
+.role{color:var(--muted);font-size:14px}
+
+/* === About page tweaks === */
+.data-model-card{padding:12px 18px;}
+.data-model-card img{margin:12px auto;max-width:640px;width:100%;}
+.data-model-card p:last-of-type{margin-top:12px;}
+
+/* === Bot (mybot.html) === */
+/* small space between the intro card and the bot card */
+.container > .card + .card { margin-top: 20px; }
+/* the bot lives inside a card that should have no inner padding for full-bleed chat */
+.chat-card { padding: 0; overflow: hidden; height: 700px; }
+
+/* make the embedded Botpress webchat fill the card */
+#bp-embedded-webchat,
+#bp-embedded-webchat .bpWebchat {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  position: unset !important;
+}
+
+/* desktop height for the chat area */
+#bp-embedded-webchat { height: 640px; }
+
+/* hide the floating button since we're embedding the chat */
+.bpFab { display: none !important; }
+
+/* responsive height */
+@media (max-width: 768px) {
+  #bp-embedded-webchat { height: 75vh !important; }
+}
+
+/* optional: align chat font with site */
+.bpWebchat, .bpWebchat * {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans,
+               Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji","Segoe UI Emoji" !important;
+}
+
+/* === Validation feedback === */
+.text-danger, .validation-summary-errors {
+  color: #f87171;
+}
+.validation-summary-errors ul {
+  margin: 8px 0 0 16px;
+  padding: 0;
+}

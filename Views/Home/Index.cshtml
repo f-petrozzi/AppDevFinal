@@ -1,0 +1,94 @@
+﻿@model EduInsight.Models.HomeDashboardViewModel
+
+@{
+    ViewData["Title"] ??= "Home";
+}
+
+<section class="card">
+    <h1 class="h1">Student enrollment at a glance</h1>
+    <p class="subtitle">Track programs, GPA trends, and enrollments per term for clear academic insights.</p>
+    <div class="grid cols-4" id="metrics">
+        <div class="metric card">
+            <span class="label">Total students</span><span class="value">@Model.StudentCount</span>
+        </div>
+        <div class="metric card">
+            <span class="label">Average GPA</span><span class="value">@Model.AverageGpa.ToString("0.00")</span>
+        </div>
+        <div class="metric card">
+            <span class="label">Programs</span><span class="value">@Model.ProgramCount</span>
+        </div>
+        <div class="metric card">
+            <span class="label">Top term (@Model.TopTerm)</span><span class="value">@Model.TopTermEnrollmentCount</span>
+        </div>
+    </div>
+</section>
+
+@if (Model.Benchmarks is { IsEmpty: false } benchmark)
+{
+    TimeZoneInfo easternZone;
+    try { easternZone = TimeZoneInfo.FindSystemTimeZoneById(OperatingSystem.IsWindows() ? "Eastern Standard Time" : "America/New_York"); }
+    catch { easternZone = TimeZoneInfo.Utc; }
+
+    var retrievedEastern = TimeZoneInfo.ConvertTimeFromUtc(
+        benchmark.RetrievedAt.Kind == DateTimeKind.Utc
+            ? benchmark.RetrievedAt
+            : benchmark.RetrievedAt.ToUniversalTime(),
+        easternZone);
+
+    var localEnrollmentCount = Model.Enrollments.Count;
+    <section class="card">
+        <h2 class="h2">National benchmark comparison</h2>
+        <p class="subtitle">
+            Benchmarks fetched from @benchmark.SourceName (@retrievedEastern)
+        </p>
+        <div class="grid cols-3">
+            <div class="metric card">
+                <span class="label">Average institution enrollment (national)</span>
+                <span class="value">@benchmark.AverageEnrollment.ToString("N0")</span>
+            </div>
+            <div class="metric card">
+                <span class="label">Median enrollment (national)</span>
+                <span class="value">@benchmark.MedianEnrollment.ToString("N0")</span>
+            </div>
+            <div class="metric card">
+                <span class="label">Local dataset enrollments</span>
+                <span class="value">@localEnrollmentCount</span>
+            </div>
+        </div>
+        @if (benchmark.AverageAdmissionRate.HasValue)
+        {
+            <p class="subtitle" style="margin-top:12px;">
+                National average admission rate: @((benchmark.AverageAdmissionRate.Value * 100).ToString("0.0"))% across @benchmark.InstitutionCount institutions.
+            </p>
+        }
+        else
+        {
+            <p class="subtitle" style="margin-top:12px;">
+                Benchmarks aggregated from @benchmark.InstitutionCount institutions.
+            </p>
+        }
+    </section>
+}
+
+<section class="card" aria-labelledby="intro-title">
+    <h2 id="intro-title" class="h2">What is EduInsight?</h2>
+    <p>
+        EduInsight helps college program coordinators keep a pulse on their enrollments. The Home dashboard spotlights
+        the latest counts, GPA trends, and a benchmark card that compares your numbers against national data from the
+        U.S. Department of Education.
+    </p>
+    <p>
+        Need to dive deeper? Manage student enrollments directly in the <a asp-controller="Enrollments" asp-action="Index">Enrollments</a>
+        area, explore interactive charts on the <a asp-controller="Insights" asp-action="Data">Insights</a> page, or chat with
+        our built-in Botpress assistant (<a asp-controller="Bot" asp-action="Index">Ask EduBot</a>) for quick answers about the dataset.
+    </p>
+</section>
+
+<section style="margin-top:16px">
+    <div class="grid cols-4">
+        <a class="card btn" asp-controller="Enrollments" asp-action="Index">View enrollments</a>
+        <a class="card btn" asp-controller="Enrollments" asp-action="Create">Add enrollment</a>
+        <a class="card btn" asp-controller="Enrollments" asp-action="Update">Update enrollment</a>
+        <a class="card btn" asp-controller="Enrollments" asp-action="Delete">Delete enrollment</a>
+    </div>
+</section>

@@ -1,0 +1,322 @@
+[
+  {
+    "StudentId": "2001",
+    "StudentName": "Ava Morales",
+    "Program": "Data Science MS",
+    "Term": "Spring 2024",
+    "Gpa": 3.72,
+    "EnrollmentDate": "2024-01-11T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2002",
+    "StudentName": "Brian Patel",
+    "Program": "Analytics MBA",
+    "Term": "Spring 2024",
+    "Gpa": 3.31,
+    "EnrollmentDate": "2024-01-12T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2003",
+    "StudentName": "Camila Torres",
+    "Program": "Cybersecurity MS",
+    "Term": "Spring 2024",
+    "Gpa": 3,
+    "EnrollmentDate": "2024-01-15T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2004",
+    "StudentName": "Daniel Kim",
+    "Program": "EdTech MS",
+    "Term": "Spring 2024",
+    "Gpa": 3.84,
+    "EnrollmentDate": "2024-01-18T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2005",
+    "StudentName": "Elena Rossi",
+    "Program": "Data Science MS",
+    "Term": "Spring 2024",
+    "Gpa": 4,
+    "EnrollmentDate": "2024-01-20T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2006",
+    "StudentName": "Felix Nguyen",
+    "Program": "Analytics MBA",
+    "Term": "Spring 2024",
+    "Gpa": 3.45,
+    "EnrollmentDate": "2024-01-22T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2007",
+    "StudentName": "Gianna Ruiz",
+    "Program": "Cybersecurity MS",
+    "Term": "Spring 2024",
+    "Gpa": 3.68,
+    "EnrollmentDate": "2024-01-25T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2008",
+    "StudentName": "Henry Adams",
+    "Program": "Data Science MS",
+    "Term": "Spring 2024",
+    "Gpa": 3.9,
+    "EnrollmentDate": "2024-05-12T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2009",
+    "StudentName": "Isla Bennett",
+    "Program": "Analytics MBA",
+    "Term": "Summer 2024",
+    "Gpa": 3.22,
+    "EnrollmentDate": "2024-05-14T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2010",
+    "StudentName": "Javier Soto",
+    "Program": "Cybersecurity MS",
+    "Term": "Summer 2024",
+    "Gpa": 3.57,
+    "EnrollmentDate": "2024-05-16T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2011",
+    "StudentName": "Kiara Shah",
+    "Program": "EdTech MS",
+    "Term": "Summer 2024",
+    "Gpa": 3.4,
+    "EnrollmentDate": "2024-05-18T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2012",
+    "StudentName": "Liam Brooks",
+    "Program": "Data Science MS",
+    "Term": "Summer 2024",
+    "Gpa": 3,
+    "EnrollmentDate": "2024-05-20T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2013",
+    "StudentName": "Maya Flores",
+    "Program": "Analytics MBA",
+    "Term": "Fall 2024",
+    "Gpa": 3.76,
+    "EnrollmentDate": "2024-05-22T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2014",
+    "StudentName": "Noah Carter",
+    "Program": "Cybersecurity MS",
+    "Term": "Fall 2024",
+    "Gpa": 3.95,
+    "EnrollmentDate": "2024-05-24T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2015",
+    "StudentName": "Olivia Perez",
+    "Program": "EdTech MS",
+    "Term": "Fall 2024",
+    "Gpa": 3.28,
+    "EnrollmentDate": "2024-09-02T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2016",
+    "StudentName": "Parker Young",
+    "Program": "Data Science MS",
+    "Term": "Fall 2024",
+    "Gpa": 3.88,
+    "EnrollmentDate": "2024-09-03T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2017",
+    "StudentName": "Quinn Rivera",
+    "Program": "Analytics MBA",
+    "Term": "Fall 2024",
+    "Gpa": 3.44,
+    "EnrollmentDate": "2024-09-04T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2018",
+    "StudentName": "Rafael Ortiz",
+    "Program": "Cybersecurity MS",
+    "Term": "Fall 2024",
+    "Gpa": 3.62,
+    "EnrollmentDate": "2024-09-05T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2019",
+    "StudentName": "Sophia Chen",
+    "Program": "Data Science MS",
+    "Term": "Fall 2024",
+    "Gpa": 3.18,
+    "EnrollmentDate": "2024-09-06T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2020",
+    "StudentName": "Theo Harris",
+    "Program": "EdTech MS",
+    "Term": "Fall 2024",
+    "Gpa": 4,
+    "EnrollmentDate": "2024-09-07T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2021",
+    "StudentName": "Uma Kapoor",
+    "Program": "Analytics MBA",
+    "Term": "Fall 2024",
+    "Gpa": 3.55,
+    "EnrollmentDate": "2024-09-08T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2022",
+    "StudentName": "Victor Gomez",
+    "Program": "Cybersecurity MS",
+    "Term": "Spring 2025",
+    "Gpa": 3.75,
+    "EnrollmentDate": "2025-01-11T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2023",
+    "StudentName": "Willow Zhang",
+    "Program": "Data Science MS",
+    "Term": "Spring 2025",
+    "Gpa": 3.32,
+    "EnrollmentDate": "2025-01-12T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2024",
+    "StudentName": "Xavier Lewis",
+    "Program": "Analytics MBA",
+    "Term": "Spring 2025",
+    "Gpa": 3.6,
+    "EnrollmentDate": "2025-01-13T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2025",
+    "StudentName": "Yara Ahmed",
+    "Program": "EdTech MS",
+    "Term": "Spring 2025",
+    "Gpa": 3.9,
+    "EnrollmentDate": "2025-01-15T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2026",
+    "StudentName": "Zoe Miller",
+    "Program": "Data Science MS",
+    "Term": "Spring 2025",
+    "Gpa": 3.1,
+    "EnrollmentDate": "2025-01-18T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2027",
+    "StudentName": "Aaron Scott",
+    "Program": "Analytics MBA",
+    "Term": "Spring 2025",
+    "Gpa": 3.7,
+    "EnrollmentDate": "2025-01-20T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2028",
+    "StudentName": "Bella Nguyen",
+    "Program": "Cybersecurity MS",
+    "Term": "Spring 2025",
+    "Gpa": 3.45,
+    "EnrollmentDate": "2025-01-22T00:00:00-05:00"
+  },
+  {
+    "StudentId": "2029",
+    "StudentName": "Caleb Turner",
+    "Program": "Data Science MS",
+    "Term": "Summer 2025",
+    "Gpa": 3.96,
+    "EnrollmentDate": "2025-05-12T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2030",
+    "StudentName": "Diana Lopez",
+    "Program": "EdTech MS",
+    "Term": "Summer 2025",
+    "Gpa": 3.2,
+    "EnrollmentDate": "2025-05-14T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2031",
+    "StudentName": "Ethan Ward",
+    "Program": "Analytics MBA",
+    "Term": "Summer 2025",
+    "Gpa": 3.6,
+    "EnrollmentDate": "2025-05-18T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2032",
+    "StudentName": "Freya Patel",
+    "Program": "Cybersecurity MS",
+    "Term": "Summer 2025",
+    "Gpa": 3.84,
+    "EnrollmentDate": "2025-05-20T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2033",
+    "StudentName": "Gabriel Evans",
+    "Program": "Data Science MS",
+    "Term": "Fall 2025",
+    "Gpa": 3.18,
+    "EnrollmentDate": "2025-05-21T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2034",
+    "StudentName": "Hazel Moore",
+    "Program": "Analytics MBA",
+    "Term": "Fall 2025",
+    "Gpa": 4,
+    "EnrollmentDate": "2025-05-22T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2035",
+    "StudentName": "Ian Rivera",
+    "Program": "Cybersecurity MS",
+    "Term": "Fall 2025",
+    "Gpa": 3.68,
+    "EnrollmentDate": "2025-09-06T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2036",
+    "StudentName": "Jada Brooks",
+    "Program": "Data Science MS",
+    "Term": "Fall 2025",
+    "Gpa": 3.22,
+    "EnrollmentDate": "2025-09-07T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2037",
+    "StudentName": "Kian Morales",
+    "Program": "EdTech MS",
+    "Term": "Fall 2025",
+    "Gpa": 3.81,
+    "EnrollmentDate": "2025-09-08T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2038",
+    "StudentName": "Lila Reyes",
+    "Program": "Analytics MBA",
+    "Term": "Fall 2025",
+    "Gpa": 3.44,
+    "EnrollmentDate": "2025-09-09T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2039",
+    "StudentName": "Mateo Silva",
+    "Program": "Data Science MS",
+    "Term": "Fall 2025",
+    "Gpa": 3.95,
+    "EnrollmentDate": "2025-09-10T00:00:00-04:00"
+  },
+  {
+    "StudentId": "2040",
+    "StudentName": "Nora Park",
+    "Program": "Cybersecurity MS",
+    "Term": "Fall 2025",
+    "Gpa": 3.4,
+    "EnrollmentDate": "2025-09-11T00:00:00-04:00"
+  }
+]

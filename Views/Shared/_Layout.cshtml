@@ -1,0 +1,49 @@
+﻿@{
+    var activePage = ViewData["ActivePage"] as string ?? string.Empty;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EduInsight</title>
+    <link rel="stylesheet" href="~/css/eduinsight.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EduInsight.styles.css" asp-append-version="true" />
+    @RenderSection("HeadContent", required: false)
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <div class="logo">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="2" width="28" height="28" rx="8" stroke="url(#g)" stroke-width="2"></rect>
+                    <path d="M9 17l5 5 9-12" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <defs>
+                        <linearGradient id="g" x1="0" y1="0" x2="32" y2="32">
+                            <stop offset="0" stop-color="#34d399"></stop>
+                            <stop offset="1" stop-color="#22c55e"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>EduInsight</span>
+            </div>
+            <nav class="nav">
+                <a class="@(activePage == "Home" ? "active" : string.Empty)" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="@(activePage == "Data" ? "active" : string.Empty)" asp-controller="Insights" asp-action="Data">Data visualization</a>
+                <a class="@(activePage == "About" ? "active" : string.Empty)" asp-controller="Home" asp-action="About">About</a>
+                <a class="@(activePage == "Bot" ? "active" : string.Empty)" asp-controller="Bot" asp-action="Index">Ask EduBot</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        @RenderBody()
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p class="muted">© 2025 EduInsight. For academic demonstration.</p>
+        </div>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

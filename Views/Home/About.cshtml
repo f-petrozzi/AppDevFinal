@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] ??= "About";
+}
+
+<section class="card">
+      <h1 class="h1">Team</h1>
+      <div class="grid cols-4">
+          <div class="profile">
+              <div class="avatar">FP</div>
+              <div><strong>Fabrizio Petrozzi</strong></div>
+              <div class="role">Solution Architect &amp; UI Lead</div>
+              <div>
+                  Contributions: mapped the static site into the MVC layout, built shared Razor components, and
+                  refreshed the EduInsight theme (layout + <code>eduinsight.css</code>).
+              </div>
+          </div>
+          <div class="profile">
+              <div class="avatar">AM</div>
+              <div><strong>Andrey Martynenko</strong></div>
+              <div class="role">MVC Workflow &amp; Documentation</div>
+              <div>
+                  Contributions: authored the Home/Insights controllers and views, wired CRUD flows with
+                  validation, and produced the updated About/README content.
+              </div>
+          </div>
+          <div class="profile">
+              <div class="avatar">BR</div>
+              <div><strong>Bryan Reeder</strong></div>
+              <div class="role">Data Services &amp; Testing</div>
+              <div>
+                  Contributions: implemented the JSON-backed enrollment repository, seeded data/ERD updates, and
+                  verified CRUD plus persistence across environments.
+              </div>
+          </div>
+          <div class="profile">
+              <div class="avatar">HB</div>
+              <div><strong>Hammaz Buksh</strong></div>
+              <div class="role">API &amp; Deployment Engineer</div>
+              <div>
+                  Contributions: integrated the College Scorecard API, configured environment secrets, deployed to
+                  Azure, and updated the embedded Botpress chatbot.
+              </div>
+          </div>
+      </div>
+  </section>
+
+<section class="card data-model-card" style="margin-top:16px">
+    <h2 class="h1">Logical data model</h2>
+    <p class="subtitle">Relational view for EduInsight.</p>
+    <img src="@(Url.Content("~/assets/erd.png"))" alt="ERD showing Student, Program, and Term tables feeding the Enrollment fact table through one-to-many relationships">
+    <p>
+        The ERD illustrates our long-term design: <strong>Students</strong>, <strong>Programs</strong>, and 
+        <strong>Terms</strong> each hold canonical details and connect to the <strong>Enrollments</strong> fact table 
+        through one-to-many relationships. This layout supports richer reporting while keeping enrollments as the central record tying those entities together.
+    </p>
+</section>
+
+<section class="card" style="margin-top:16px">
+    <h2 class="h1">Repository</h2>
+    <p class="subtitle">Code and documentation live in our GitHub repo.</p>
+    <p>
+        <a class="btn" href="https://github.com/f-petrozzi/AppDevFinal" target="_blank" rel="noopener">Open GitHub repository</a>
+    </p>
+</section>

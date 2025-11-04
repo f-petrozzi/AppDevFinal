@@ -1,0 +1,189 @@
+﻿@model EduInsight.Models.DataInsightsViewModel
+@using System.Text.Json
+
+@{
+    ViewData["Title"] ??= "Data visualization";
+    var enrollmentPayload = Model.Enrollments.Select(e => new
+    {
+        studentId = e.StudentId,
+        studentName = e.StudentName,
+        program = e.Program,
+        term = e.Term,
+        gpa = e.Gpa,
+        enrollmentDate = e.EnrollmentDate.ToString("yyyy-MM-dd")
+    });
+    var enrollmentJson = JsonSerializer.Serialize(enrollmentPayload, new JsonSerializerOptions
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    });
+}
+
+@section HeadContent {
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-card { display: flex; align-items: center; justify-content: center; min-height: 360px; }
+        .chart-card.wide { min-height: 420px; }
+        .chart-card canvas { width: 100% !important; height: 100% !important; }
+    </style>
+}
+
+<section class="card">
+    <h1 class="h1">Data visualization</h1>
+    <p class="subtitle">Two charts on top and one wide chart below.</p>
+
+    <div class="charts">
+        <div class="card">
+            <h3 class="subtitle" style="text-align:center;margin:0 0 8px 0;">Enrollments by Term (stacked by program)</h3>
+            <div class="chart-card">
+                <canvas id="ch-enrollments"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="subtitle" style="text-align:center;margin:0 0 8px 0;">Program Distribution</h3>
+            <div class="chart-card">
+                <canvas id="ch-programs"></canvas>
+            </div>
+        </div>
+
+        <div class="card wide">
+            <h3 class="subtitle" style="text-align:center;margin:0 0 8px 0;">Average GPA by Term</h3>
+            <div class="chart-card wide">
+                <canvas id="ch-gpa"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        const enrollments = @Html.Raw(enrollmentJson);
+
+        if (!enrollments.length) {
+            console.warn('No enrollment data available for visualization.');
+        }
+
+        const TERM_ORDER = Array.from(new Set(enrollments.map(item => item.term))).sort();
+
+        const groupBy = (items, key) => items.reduce((acc, item) => {
+            (acc[item[key]] = acc[item[key]] || []).push(item);
+            return acc;
+        }, {});
+
+        const unique = items => Array.from(new Set(items));
+
+        (function renderCharts() {
+            const programs = unique(enrollments.map(row => row.program)).sort();
+            const byTerm = groupBy(enrollments, 'term');
+
+            const stackedDatasets = programs.map(program => {
+                const data = TERM_ORDER.map(term => (byTerm[term] || []).filter(r => r.program === program).length);
+                return { label: program, data };
+            });
+
+            const enrollmentsCtx = document.getElementById('ch-enrollments');
+            new Chart(enrollmentsCtx, {
+                type: 'bar',
+                data: { labels: TERM_ORDER, datasets: stackedDatasets },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                footer: (items) => {
+                                    const total = items[0].chart.data.datasets
+                                        .reduce((sum, dataset) => sum + (dataset.data[items[0].dataIndex] || 0), 0);
+                                    return `Total: ${total}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const byProgram = groupBy(enrollments, 'program');
+            const programLabels = Object.keys(byProgram).sort();
+            const programCounts = programLabels.map(label => byProgram[label].length);
+            const total = programCounts.reduce((sum, value) => sum + value, 0);
+
+            const programsCtx = document.getElementById('ch-programs');
+            new Chart(programsCtx, {
+                type: 'doughnut',
+                data: { labels: programLabels, datasets: [{ label: 'By program', data: programCounts }] },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => {
+                                    const count = ctx.parsed;
+                                    const percent = total ? ((count / total) * 100).toFixed(1) : 0;
+                                    return `${ctx.label}: ${count} (${percent}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const gpaSeries = TERM_ORDER.map(term => {
+                const entries = byTerm[term] || [];
+                if (!entries.length) {
+                    return null;
+                }
+
+                const avg = entries.reduce((sum, { gpa }) => sum + gpa, 0) / entries.length;
+                return Number(avg.toFixed(2));
+            });
+
+            const benchmark = 3.5;
+            const benchmarkSeries = TERM_ORDER.map(() => benchmark);
+
+            const gpaCtx = document.getElementById('ch-gpa');
+            new Chart(gpaCtx, {
+                type: 'line',
+                data: {
+                    labels: TERM_ORDER,
+                    datasets: [
+                        { label: 'Average GPA', data: gpaSeries, spanGaps: true, tension: 0.25 },
+                        { label: 'Benchmark 3.50', data: benchmarkSeries, pointRadius: 0, borderDash: [6, 4] }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        y: { suggestedMin: 0, suggestedMax: 4, ticks: { stepSize: 0.5 } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                afterBody: (items) => {
+                                    const index = items[0].dataIndex;
+                                    const current = gpaSeries[index];
+                                    const previous = index > 0 ? gpaSeries[index - 1] : null;
+                                    if (current == null || previous == null) {
+                                        return;
+                                    }
+                                    const delta = (current - previous).toFixed(2);
+                                    const sign = delta > 0 ? '+' : '';
+                                    return `Change vs prev: ${sign}${delta}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        })();
+    </script>
+}

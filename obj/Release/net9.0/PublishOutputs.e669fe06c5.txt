@@ -1,0 +1,8 @@
+D:\Downloads\delete_later\delete\AppDevCopy\EduInsight\bin\Publish\EduInsight.exe
+D:\Downloads\delete_later\delete\AppDevCopy\EduInsight\bin\Publish\appsettings.Development.json
+D:\Downloads\delete_later\delete\AppDevCopy\EduInsight\bin\Publish\appsettings.json
+D:\Downloads\delete_later\delete\AppDevCopy\EduInsight\bin\Publish\Data\enrollments.json
+D:\Downloads\delete_later\delete\AppDevCopy\EduInsight\bin\Publish\EduInsight.dll
+D:\Downloads\delete_later\delete\AppDevCopy\EduInsight\bin\Publish\EduInsight.deps.json
+D:\Downloads\delete_later\delete\AppDevCopy\EduInsight\bin\Publish\EduInsight.runtimeconfig.json
+D:\Downloads\delete_later\delete\AppDevCopy\EduInsight\bin\Publish\EduInsight.pdb
