@@ -1,1 +1,78 @@
+@model EduInsight.Models.EnrollmentDeleteModel
+
+@{
+    ViewData["Title"] ??= "Delete enrollment";
+}
+
+<nav class="crud-nav">
+    <a asp-controller="Enrollments" asp-action="Index">View enrollments</a>
+    <a asp-controller="Enrollments" asp-action="Create">Add enrollment</a>
+    <a asp-controller="Enrollments" asp-action="Update">Update enrollment</a>
+    <a class="active" asp-controller="Enrollments" asp-action="Delete">Delete enrollment</a>
+</nav>
+
+<section class="card">
+    <h1 class="h1">Delete enrollment</h1>
+    <p class="subtitle">Remove a record by ID.</p>
+
+    @if (string.IsNullOrWhiteSpace(Model?.StudentName))
+    {
+        <form asp-action="DeleteLookup" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="grid cols-2">
+                <div>
+                    <label asp-for="StudentId"></label>
+                    <input asp-for="StudentId" class="input" placeholder="Enter Student ID to load" />
+                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                </div>
+            </div>
+            <div style="margin-top:12px">
+                <button class="btn primary" type="submit">Find</button>
+                <a class="btn" asp-controller="Enrollments" asp-action="Index" style="margin-left:8px">Back to list</a>
+            </div>
+        </form>
+    }
+    else
+    {
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input asp-for="StudentId" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="grid cols-2">
+                <div>
+                    <label>Student</label>
+                    <div class="card">
+                        <strong>@Model.StudentName</strong><br />
+                        <span class="muted">@Model.StudentId</span>
+                    </div>
+                </div>
+                <div>
+                    <label>Program</label>
+                    <div class="card">
+                        <strong>@Model.Program</strong><br />
+                        <span class="muted">@Model.Term</span>
+                    </div>
+                </div>
+                <div>
+                    <label>GPA</label>
+                    <div class="card">@Model.Gpa.ToString("0.00")</div>
+                </div>
+                <div>
+                    <label asp-for="Reason"></label>
+                    <input asp-for="Reason" class="input" placeholder="Optional context" />
+                    <span asp-validation-for="Reason" class="text-danger"></span>
+                </div>
+            </div>
+            <div style="margin-top:12px">
+                <button class="btn danger" type="submit">Delete</button>
+                <a class="btn" asp-controller="Enrollments" asp-action="Index" style="margin-left:8px">Back to list</a>
+            </div>
+        </form>
+    }
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
 ﻿
