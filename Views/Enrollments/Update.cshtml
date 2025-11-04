@@ -1,1 +1,98 @@
-﻿
+﻿@model EduInsight.Models.EnrollmentFormModel
+
+@{
+    ViewData["Title"] ??= "Update enrollment";
+}
+
+<nav class="crud-nav">
+    <a asp-controller="Enrollments" asp-action="Index">View enrollments</a>
+    <a asp-controller="Enrollments" asp-action="Create">Add enrollment</a>
+    <a class="active" asp-controller="Enrollments" asp-action="Update">Update enrollment</a>
+    <a asp-controller="Enrollments" asp-action="Delete">Delete enrollment</a>
+</nav>
+
+<section class="card">
+    <h1 class="h1">Update enrollment</h1>
+    <p class="subtitle">Modify an existing record.</p>
+
+    @if (string.IsNullOrWhiteSpace(Model?.OriginalStudentId))
+    {
+        <form asp-action="UpdateLookup" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="grid cols-2">
+                <div>
+                    <label asp-for="StudentId"></label>
+                    <input asp-for="StudentId" class="input" placeholder="Enter Student ID to load" />
+                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                </div>
+            </div>
+            <div style="margin-top:12px">
+                <button class="btn primary" type="submit">Find</button>
+                <a class="btn" asp-controller="Enrollments" asp-action="Index" style="margin-left:8px">Back to list</a>
+            </div>
+        </form>
+    }
+    else
+    {
+        <form asp-action="Update" method="post">
+            @Html.AntiForgeryToken()
+            <input asp-for="OriginalStudentId" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="grid cols-2">
+                <div>
+                    <label asp-for="StudentId"></label>
+                    <input asp-for="StudentId" class="input" />
+                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="StudentName"></label>
+                    <input asp-for="StudentName" class="input" />
+                    <span asp-validation-for="StudentName" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Program"></label>
+                    <select asp-for="Program">
+                        <option value="">Select a program</option>
+                        <option>Data Science MS</option>
+                        <option>Analytics MBA</option>
+                        <option>Cybersecurity MS</option>
+                        <option>EdTech MS</option>
+                    </select>
+                    <span asp-validation-for="Program" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Term"></label>
+                    <select asp-for="Term">
+                        <option value="">Select a term</option>
+                        <option>Spring 2024</option>
+                        <option>Summer 2024</option>
+                        <option>Fall 2024</option>
+                        <option>Spring 2025</option>
+                        <option>Summer 2025</option>
+                        <option>Fall 2025</option>
+                    </select>
+                    <span asp-validation-for="Term" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Gpa"></label>
+                    <input asp-for="Gpa" class="input" />
+                    <span asp-validation-for="Gpa" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="EnrollmentDate"></label>
+                    <input asp-for="EnrollmentDate" class="input" />
+                    <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div style="margin-top:12px">
+                <button class="btn primary" type="submit">Update</button>
+                <a class="btn" asp-controller="Enrollments" asp-action="Index" style="margin-left:8px">Back to list</a>
+            </div>
+        </form>
+    }
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

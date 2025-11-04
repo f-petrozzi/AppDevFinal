@@ -1,1 +1,62 @@
+@model IReadOnlyList<EduInsight.Models.Enrollment>
+
+@{
+    ViewData["Title"] ??= "View enrollments";
+    var status = TempData["StatusMessage"] as string;
+}
+
+@if (!string.IsNullOrWhiteSpace(status))
+{
+    <section class="card" role="status">
+        <p class="subtitle">@status</p>
+    </section>
+}
+
+<nav class="crud-nav">
+    <a class="active" asp-controller="Enrollments" asp-action="Index">View enrollments</a>
+    <a asp-controller="Enrollments" asp-action="Create">Add enrollment</a>
+    <a asp-controller="Enrollments" asp-action="Update">Update enrollment</a>
+    <a asp-controller="Enrollments" asp-action="Delete">Delete enrollment</a>
+</nav>
+
+<section class="card">
+    <h1 class="h1">View enrollments</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Program</th>
+                <th>Term</th>
+                <th>GPA</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @if (Model.Count == 0)
+        {
+            <tr>
+                <td colspan="6">No enrollments yet. Use the "Add enrollment" tab to create one.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var enrollment in Model)
+            {
+                <tr>
+                    <td>@enrollment.StudentId</td>
+                    <td>@enrollment.StudentName</td>
+                    <td>@enrollment.Program</td>
+                    <td>@enrollment.Term</td>
+                    <td>@enrollment.Gpa.ToString("0.00")</td>
+                    <td class="actions">
+                        <a class="btn" asp-action="Update" asp-route-studentId="@enrollment.StudentId">Edit</a>
+                        <a class="btn danger" asp-action="Delete" asp-route-studentId="@enrollment.StudentId">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</section>
 ﻿

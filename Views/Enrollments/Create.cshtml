@@ -1,1 +1,74 @@
-﻿
+﻿@model EduInsight.Models.EnrollmentFormModel
+
+@{
+    ViewData["Title"] ??= "Add enrollment";
+}
+
+<nav class="crud-nav">
+    <a asp-controller="Enrollments" asp-action="Index">View enrollments</a>
+    <a class="active" asp-controller="Enrollments" asp-action="Create">Add enrollment</a>
+    <a asp-controller="Enrollments" asp-action="Update">Update enrollment</a>
+    <a asp-controller="Enrollments" asp-action="Delete">Delete enrollment</a>
+</nav>
+
+<section class="card">
+    <h1 class="h1">Add enrollment</h1>
+    <p class="subtitle">Capture a new student enrollment.</p>
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="grid cols-2">
+            <div>
+                <label asp-for="StudentId"></label>
+                <input asp-for="StudentId" class="input" placeholder="e.g., 1001" />
+                <span asp-validation-for="StudentId" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="StudentName"></label>
+                <input asp-for="StudentName" class="input" placeholder="e.g., A. Student" />
+                <span asp-validation-for="StudentName" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Program"></label>
+                <select asp-for="Program">
+                    <option value="">Select a program</option>
+                    <option>Data Science MS</option>
+                    <option>Analytics MBA</option>
+                    <option>Cybersecurity MS</option>
+                    <option>EdTech MS</option>
+                </select>
+                <span asp-validation-for="Program" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Term"></label>
+                <select asp-for="Term">
+                    <option value="">Select a term</option>
+                    <option>Spring 2024</option>
+                    <option>Summer 2024</option>
+                    <option>Fall 2024</option>
+                    <option>Spring 2025</option>
+                    <option>Summer 2025</option>
+                    <option>Fall 2025</option>
+                </select>
+                <span asp-validation-for="Term" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Gpa"></label>
+                <input asp-for="Gpa" class="input" placeholder="e.g., 3.75" />
+                <span asp-validation-for="Gpa" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="EnrollmentDate"></label>
+                <input asp-for="EnrollmentDate" class="input" />
+                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div style="margin-top:12px">
+            <button class="btn primary" type="submit">Save</button>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
